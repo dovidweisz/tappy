@@ -76,6 +76,39 @@
 		return event;
 	}
 
+
+	function EventOffListener (node, eventName, callBack, callBackContext) {
+		this.node = node;
+		this.eventName = eventName;
+		this.cb = callBack;
+		this.cbContext = callBackContext;
+		this.eventID = BH.utils.uuid();
+
+		this.nodeEvent = _.bind(_nodeEvent, this);
+		node.addEventListener(this.eventName, this.nodeEvent);
+
+		this.documentEvent = _.bind(_documentEvent, this);
+		document.addEventListener(this.eventName, this.documentEvent);
+
+	}
+	EventOffListener.prototype.destroy = function() {
+		this.node.removeEventListener(this.eventName, this.nodeEvent);
+		document.removeEventListener(this.eventName, this.documentEvent);
+	};
+
+	function _nodeEvent (e) {
+		e.nodeEventID = this.eventID;
+	}
+
+	function _documentEvent (e) {
+		if(e.nodeEventID !== this.eventID){
+			this.cb.apply(this.cbContext, arguments);
+			this.destroy();
+		}
+	}
+
+	Tappy.EventOffListener = EventOffListener;
+
 	if(! window.Tappy){
 		window.Tappy = Tappy;
 		Tappy.documentInstance = new Tappy(document);
