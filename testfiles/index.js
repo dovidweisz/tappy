@@ -3,10 +3,20 @@
 	Array.prototype.forEach.call(document.querySelectorAll(".tapme"), function(domNode, index) {
 		new TapMe(domNode, index % 2 === 0);
 	});
+	Array.prototype.forEach.call(document.querySelectorAll(".preventer"), function(domNode, index) {
+		domNode.addEventListener("tap", function(e) {
+			e.preventDefault();
+		});
+	});
+	Array.prototype.forEach.call(document.querySelectorAll(".stopper"), function(domNode, index) {
+		domNode.addEventListener("tap", function(e) {
+			e.stopPropagation();
+		});
+	});
 	function TapMe(domNode, preventDefault) {
 		//domNode = domNode;
 		this.setActiveStatus = function(active) {
-			domNode.innerHTML = (active ? "" : "not ") + "active";
+			domNode.querySelector("p").innerHTML = (active ? "" : "not ") + "active";
 			//domNode.innerHTML += "<button>Try Me</button>";
 			domNode.className = active ? "tapme active" : "tapme";
 		};

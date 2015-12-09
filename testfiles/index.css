@@ -1,25 +1,33 @@
 .clickme{
-	height: 200px;
-	width : 200px;
+	height: 300px;
+	width : 300px;
 	background-color: red;
 	position:relative;
 }
 .tapme{
+	
+	background-color:cyan;
+}
+.stopper{
+	background-color: red;
+}
+.preventer{
+	background-color: yellow;
+}
+.tapme, .stopper, .preventer{
+	position: absolute;
 	position:absolute;
 	top:50px;
 	right:50px;
 	bottom:50px;
 	left:50px;
-	background-color:cyan;
 }
 .tapme.active{
 	background-color: #09E69B;
 }
 .tapme:hover{
-	background-color: #FBFA35;
+	/*background-color: #FBFA35;*/
 }
-p{
-	position:absolute;
-	top:0;
-	right:0;
+.clickme:hover{
+	background-color: pink;
 }
