@@ -6,6 +6,7 @@
 	Array.prototype.forEach.call(document.querySelectorAll(".preventer"), function(domNode, index) {
 		domNode.addEventListener("mouseenter", function(e) {
 			domNode.className = "preventer hovered";
+			domNode.innerHTML = "hover works"
 		});
 		domNode.addEventListener("mouseleave", function(e) {
 			domNode.className = "preventer";
