@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test for Tappy</title>
+</head>
+<body>
+	<div class="clickme">
+		<div class="tapme">
+		</div>
+	</div>
+	<p></p>
+	<style type="text/css">
+		.clickme{
+			height: 200px;
+			width : 200px;
+			background-color: red;
+			position:relative;
+		}
+		.tapme{
+			position:absolute;
+			top:50px;
+			right:50px;
+			bottom:50px;
+			left:50px;
+			background-color:blue;
+		}
+		.tapme:hover{
+			background-color: purple;
+		}
+		p{
+			position:absolute;
+			top:0;
+			right:0;
+		}
+	</style>
+	<script type="text/javascript" src="tappy.js"></script>
+	<script type="text/javascript">
+	(function(){
+		var tapme = new function() {
+			this.domNode = document.querySelector(".tapme");
+
+			this.setActiveStatus = function(active) {
+				this.domNode.innerHTML = (active ? "" : "not ") + "active";
+			};
+			this.domNode.addEventListener("tap",setActive.bind(this));
+			function setActive (e) {
+				this.setActiveStatus(true);
+				new Tappy.EventOffListener(this.domNode, "tap", setInactive, this, e);
+			}
+			function setInactive () {
+				this.setActiveStatus(false);
+			}
+		}
+	})();
+	</script>
+</body>
+</html>
