@@ -84,10 +84,10 @@
 		this.cbContext = callBackContext;
 		this.eventID = BH.utils.uuid();
 
-		this.nodeEvent = _.bind(_nodeEvent, this);
+		this.nodeEvent = _nodeEvent.bind(this);
 		node.addEventListener(this.eventName, this.nodeEvent);
 
-		this.documentEvent = _.bind(_documentEvent, this);
+		this.documentEvent = _documentEvent.bind(this);
 		document.addEventListener(this.eventName, this.documentEvent);
 
 	}
