@@ -76,13 +76,19 @@
 		return event;
 	}
 
+	var _uniqeCounter = 0;
+	function unique () {
+		return (new Date) - ((++_uniqeCounter) * 9);
+	}
 
-	function EventOffListener (node, eventName, callBack, callBackContext) {
+
+	function EventOffListener (node, eventName, callBack, callBackContext, exclude) {
 		this.node = node;
 		this.eventName = eventName;
 		this.cb = callBack;
-		this.cbContext = callBackContext;
-		this.eventID = BH.utils.uuid();
+		this.cbContext = callBackContext; // should default to undefined
+		this.excludeEvent = exclude;
+		this.eventID = unique();
 
 		this.nodeEvent = _nodeEvent.bind(this);
 		node.addEventListener(this.eventName, this.nodeEvent);
@@ -101,7 +107,7 @@
 	}
 
 	function _documentEvent (e) {
-		if(e.nodeEventID !== this.eventID){
+		if(e !== this.excludeEvent && e.nodeEventID !== this.eventID){
 			this.cb.apply(this.cbContext, arguments);
 			this.destroy();
 		}
