@@ -7,7 +7,7 @@
 		//domNode = domNode;
 		this.setActiveStatus = function(active) {
 			domNode.innerHTML = (active ? "" : "not ") + "active";
-			domNode.innerHTML += "<button>Try Me</button>";
+			//domNode.innerHTML += "<button>Try Me</button>";
 			domNode.className = active ? "tapme active" : "tapme";
 		};
 		domNode.addEventListener("tap",setActive.bind(this));
