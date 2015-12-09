@@ -1,16 +1,15 @@
 (function(){
-	alert("boo!");
 	Array.prototype.forEach.call(document.querySelectorAll(".tapme"), function(domNode, index) {
 		new TapMe(domNode, index % 2 === 0);
 	});
 	Array.prototype.forEach.call(document.querySelectorAll(".preventer"), function(domNode, index) {
-		domNode.addEventListener("mouseenter", function(e) {
+		/*domNode.addEventListener("mouseenter", function(e) {
 			domNode.className = "preventer hovered";
 			domNode.innerHTML = "hover works"
 		});
 		domNode.addEventListener("mouseleave", function(e) {
 			domNode.className = "preventer";
-		});
+		});*/
 	});
 	Array.prototype.forEach.call(document.querySelectorAll(".stopper"), function(domNode, index) {
 		domNode.addEventListener("tap", function(e) {

@@ -14,7 +14,7 @@
 .preventer{
 	background-color: yellow;
 }
-.preventer.hovered{
+.preventer:hover{
 	opacity: 0.75;
 }
 .tapme, .stopper, .preventer{
