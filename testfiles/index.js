@@ -4,8 +4,11 @@
 		new TapMe(domNode, index % 2 === 0);
 	});
 	Array.prototype.forEach.call(document.querySelectorAll(".preventer"), function(domNode, index) {
-		domNode.addEventListener("tap", function(e) {
-			e.preventDefault();
+		domNode.addEventListener("mouseenter", function(e) {
+			domNode.className = "preventer hovered";
+		});
+		domNode.addEventListener("mouseleave", function(e) {
+			domNode.className = "preventer";
 		});
 	});
 	Array.prototype.forEach.call(document.querySelectorAll(".stopper"), function(domNode, index) {
