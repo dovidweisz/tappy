@@ -1,5 +1,5 @@
 (function(){
-	
+	alert("boo!");
 	Array.prototype.forEach.call(document.querySelectorAll(".tapme"), function(domNode, index) {
 		new TapMe(domNode, index % 2 === 0);
 	});
