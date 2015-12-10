@@ -37,8 +37,20 @@
 		if( tapActive() && ! tapInProgress.tapEvent){
 			var tapEvent = simulateEvent(tapInProgress.el, "tap");
 			tapInProgress.tapEvent = tapEvent;
+			stopMouseenter(tapInProgress.el);
 		} 
 	}
+	function stopMouseenter (domNode) {
+		function _stop (e) {
+			console.log("STOPIT");
+			e.stopPropagation();
+		}
+		domNode.addEventListener("mouseenter", _stop, true);
+		setTimeout(function() {
+			domNode.removeEventListener("mouseenter", _stop, true);
+		},100);
+	}
+
 	function clickEvent (e) {
 		if( tapActive() && tapInProgress.tapEvent ){
 			var tapEvent = tapInProgress.tapEvent;
